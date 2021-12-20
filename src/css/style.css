@@ -1,0 +1,72 @@
+.wrapper {
+  width: 70vw;
+  max-height: 80vh;
+  margin: auto;
+}
+
+.nicknames {
+  border: 1px solid darkgrey;
+  box-shadow: -2px 2px 2px lightgray;
+  border-right: none;
+  max-height: 40vh;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  overflow-y: auto;
+}
+
+.chat-wrapper {
+  border: 1px solid darkgrey;
+  min-height: 80vh;
+  max-height: 80vh;
+  border-radius: 15px;
+  box-shadow: -2px 2px 2px lightgray;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper {
+  margin: 10px 0;
+}
+
+.message-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+[v-cloak] { display: none; }
+
+span.avatar {
+  border: 1px solid darkgray;
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  border-radius: 50%;
+  background: lightgray;
+  margin-right: 10px;
+}
+
+.my-nick {
+  color: red;
+}
+
+.error {
+  color: red;
+}
+
+span.error {
+  font-size: 12px;
+}
+
+span.my-message {
+  color: lightpink;
+}
+
+.current-message {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+div.my-message {
+  align-items: flex-end;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+  <title>Document</title>
+</head>
+
+<body>
+<div id="app" class="mt-5">
+
+  <div class="wrapper" v-cloak v-if="!showModal">
+    <div class="row">
+      <!--          nicks-->
+      <div class="col-4 nicknames mt-4">
+        <ul class="list-group">
+          <li class="list-group-item border-0 d-flex align-items-center" v-for="currentNick in nickNames" :key="currentNick.id">
+            <span class="avatar"></span>
+            <span v-bind:class="{ 'my-nick' : currentNick.name === nick }">{{currentNick.nick === nick ? 'You' : currentNick.nick }}</span>
+          </li>
+        </ul>
+      </div>
+      <!--          chat-->
+      <div class="col chat-wrapper">
+        <div class="message-content">
+          <div class="current-message" v-for="message in messages" :key="message.messageId" :class="{'my-message': message.nick === nick}">
+            <span :class="{'my-message': message.nick === nick}">{{ message.nick === nick ? 'You' : message.nick }} {{message.date | date }}</span>
+            <span>{{ message.message }}</span>
+          </div>
+        </div>
+        <div class="input-wrapper">
+          <input v-on:keydown.enter="sendMessage" v-model="message" type="text" class="form-control" placeholder="Введите сообщение" aria-label="message"
+                 aria-describedby="addon-wrapping">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" style="display: block" v-if="showModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Введите псевдоним</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" v-model="nick" class="form-control" placeholder="Введите псевдоним" aria-label="message"
+                 aria-describedby="addon-wrapping">
+          <span class="error" v-if="nickError">Ошибка при выборе ника</span>
+        </div>
+        <div class="modal-footer">
+          <button :disabled="!nick" type="button" class="btn btn-primary" v-on:click="processInput">Отправить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop fade show" id="backdrop" v-if="showModal"></div>
+</div>
+</body>
+
+</html>
